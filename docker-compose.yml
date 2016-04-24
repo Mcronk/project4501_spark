@@ -1,3 +1,5 @@
+# docker exec -it project4501spark_sparkWorker_1 bin/spark-submit --master spark://sparkMaster:7077 --total-executor-cores 2 --executor-memory 512m /tmp/data/driver.py
+
 sparkMaster:
   image: gettyimages/spark
   command: bin/spark-class org.apache.spark.deploy.master.Master -h sparkMaster
