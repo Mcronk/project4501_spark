@@ -26,7 +26,7 @@ user_items = pairs.groupByKey().mapValues(s)
 # 2. Output example: 1: 3, 333, 33, 33, 81, 
 output = sorted(user_items.collect())
 for user, items in output:
-	print(user+": ", end='')
+	print("("+user+": ", end='')
 	first = True
 	for item in items:
 		if first == True:
@@ -34,7 +34,7 @@ for user, items in output:
 		else:
 			print(", ", end='')
 		print(item, end='')
-	print("\n")
+	print(")")
 
 print ("Print (user, items) pairs done")
 
@@ -45,7 +45,7 @@ user_pair = user_items.flatMap(lambda ui: [(ui[0], pair) for pair in list(iterto
 # 3. Output example: 1: ('333', '33')
 output = sorted(user_pair.collect())
 for user, pair in output:
-	print(user+": "+str(pair))
+	print("("+user+": "+str(pair)+")")
 
 print ("Print (user, item_pair) pairs done")
 
@@ -56,7 +56,7 @@ pair_user = user_pair.map(lambda user_item: (user_item[1],user_item[0]))
 # 4. Output example: ('12', '3'): 2
 output = sorted(pair_user.collect())
 for pair, user in output:
-	print(str(pair)+": "+user)
+	print("("+str(pair)+": "+user+")")
 
 print ("Print (item_pair, users) pairs done")
 
@@ -68,7 +68,7 @@ pair_count = item_pair.reduceByKey(lambda x,y: x+y)
 # 5. Output example: ('12', '3'): 1
 output = sorted(pair_count.collect())
 for pair, count in output:
-	print(str(pair)+": "+str(count))
+	print("("+str(pair)+": "+str(count)+")")
 
 print ("Print (item_pair, count) pairs done")
 
@@ -79,6 +79,6 @@ pattern_pair = pair_count.filter(lambda pair: pair[1] >= 3)
 # 6. Output example: ('3', '33'): 3
 output = sorted(pattern_pair.collect())
 for pair, count in output:
-	print(str(pair)+": "+str(count))
+	print("("+str(pair)+": "+str(count)+")")
 
 print ("Print (pattern_pair, count) pairs done")
