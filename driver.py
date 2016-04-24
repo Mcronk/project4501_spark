@@ -3,7 +3,7 @@ from pyspark import SparkContext
 import itertools
 
 sc = SparkContext("spark://sparkMaster:7077", "PopularItems")
-data = sc.textFile("/tmp/data/access1.log")
+data = sc.textFile("/tmp/data/access.log")
 
 # 1. Read data in as pairs of (user_id, item_id clicked on by the user)
 pairs = data.map(lambda line: tuple(line.split("\t")))
@@ -34,6 +34,7 @@ for user, items in output:
 		else:
 			print(", ", end='')
 		print(item, end='')
+	print("\n")
 
 print ("Print (user, items) pairs done")
 
