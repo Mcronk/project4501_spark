@@ -10,21 +10,33 @@ pairs = data.map(lambda line: line.split("\t"))
 output = pairs.collect()
 for pair in output:
 	print(pair)
+	# print("\n")
+
+print ("Print pairs done")
+
+# 2. Group data into (user_id, list of item ids they clicked on)
+user_items = pairs.groupByKey()
+# 2. Output example: ['1', '3']
+output = user_items.collect()
+for user, items in output:
+	print(user+"\t")
+	for item in items:
+		print(item+"\t")
 	print("\n")
 
-
+print ("Print user_items done")
 
 # pages = pairs.map(lambda pair: (pair[1], 1))
 # count = pages.reduceByKey(lambda x,y: x+y)
 
 
-output = pairs.collect()
-for pair in output:
-	print(pair)
-	print("\n")
+# output = pairs.collect()
+# for pair in output:
+# 	print(pair)
+# 	print("\n")
     # print ("page_id %s count %d" % (page_id, count))
   
-print ("Print pairs done")
+# print ("Print pairs done")
 
 # 1. Read data in as pairs of (user_id, item_id clicked on by the user)
 # 2. Group data into (user_id, list of item ids they clicked on)
